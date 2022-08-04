@@ -38,6 +38,20 @@ class _AnimalsCardState extends State<AnimalsCard> {
                 widget.info["photo"],
                 width: mediaWidth(context, 0.3),
                 height: mediaHeight(context, 0.2),
+                loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },
               ),
               Text(
                 widget.info["name"],
