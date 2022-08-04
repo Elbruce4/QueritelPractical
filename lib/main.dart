@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:queritel_practical/components/DetailAnimals/index.dart';
+import 'package:queritel_practical/routes/index.dart';
 import 'components/home.dart';
 
 void main() {
@@ -12,6 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: getRoutes(context),
+      initialRoute: "/",
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,

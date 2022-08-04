@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:queritel_practical/components/AnimalsCards/AnimalsCard.dart';
+import 'package:queritel_practical/components/AnimalsCards/index.dart';
 import 'package:queritel_practical/utils/shortcut.dart';
 
 import '../api/Data.dart';
@@ -66,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   GestureDetector(
                     onTap: () {
+                      if (petShow != "cats")
                       getCats();
                       setState(() {
                         show = true;
@@ -81,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      if (petShow != "dogs") 
                       getDogs();
                       setState(() {
                         show = true;
