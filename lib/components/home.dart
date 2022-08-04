@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:queritel_practical/components/AnimalsCards/index.dart';
 import 'package:queritel_practical/utils/shortcut.dart';
+import 'package:flutter/foundation.dart';
 
 import '../api/Data.dart';
 
@@ -64,10 +67,16 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  if(defaultTargetPlatform == TargetPlatform.windows) (
+                    Image.asset(
+                      "lib/assets/logoPets.png",
+                      width: mediaWidth(context, 0.05),
+                      height: mediaHeight(context, 0.05),)
+                  ),
                   GestureDetector(
                     onTap: () {
                       if (petShow != "cats")
-                      getCats();
+                      getCats();  
                       setState(() {
                         show = true;
                       });
@@ -104,10 +113,14 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             child: SingleChildScrollView(
               child: Container(
+                padding: EdgeInsets.only(
+                  top: mediaHeight(context, 0.1)
+                ),
                 height: mediaHeight(context, 0.85),
                 child: GridView.count(
-                  crossAxisCount: 2,
+                  crossAxisCount: defaultTargetPlatform == TargetPlatform.windows ? 3 : 2,
                   children: [
+
                     if(petShow == "cats") 
                         ...cats["cats"].map((obj) {
                         return AnimalsCard(info: obj);
