@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:queritel_practical/utils/shortcut.dart';
 
 import '../api/Data.dart';
 
@@ -26,8 +27,8 @@ class _MyHomePageState extends State<MyHomePage> {
             decoration: BoxDecoration(
               color: Colors.grey
             ),
-            height: 100,
-            width: 100,
+            height: mediaHeight(context, 0.15),
+            width: mediaWidth(context, 1),
           ),
           Container()
         ],
