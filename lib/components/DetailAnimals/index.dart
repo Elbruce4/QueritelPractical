@@ -140,7 +140,7 @@ class _DetailAnimalsState extends State<DetailAnimals> {
                 margin: EdgeInsets.all(mediaWidth(context, 0.05)),
                 height: mediaHeight(context, 0.5),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: defaultTargetPlatform == TargetPlatform.windows ? MainAxisAlignment.spaceAround : MainAxisAlignment.start,
                   children:[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
