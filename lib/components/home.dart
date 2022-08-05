@@ -52,11 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
     print(dogs);
   }
 
-/*   @override
+  @override
   void initState() {
     // TODO: implement initState
     getCats();
-  } */
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,70 +68,101 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Colors.grey
+              gradient: LinearGradient(
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.bottomRight,
+                  stops: [0.1, 1],
+                  colors: [Color.fromARGB(255, 83, 32, 81), Color.fromARGB(255, 179, 123, 49)],
+                ),
             ),
-            height: mediaHeight(context, 0.15),
+            height: defaultTargetPlatform == TargetPlatform.windows ? mediaHeight(context, 0.2) : mediaHeight(context, 0.15),
             width: mediaWidth(context, 1),
             child: Material(
-              type: MaterialType.transparency,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  if(defaultTargetPlatform == TargetPlatform.windows) (
-                    Image.asset(
-                      "lib/assets/logoPets.png",
-                      width: mediaWidth(context, 0.05),
-                      height: mediaHeight(context, 0.05),)
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: mediaHeight(context, 0.02)
+                type: MaterialType.transparency,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    if(defaultTargetPlatform == TargetPlatform.windows) 
+                    Container(
+                      margin: EdgeInsets.only(
+                        right: mediaWidth(context, 0.2)
+                      ),
+                      child: Image.asset(
+                        "lib/assets/pet.png",
+                        width: mediaWidth(context, 0.07),
+                        height: mediaHeight(context, 0.07),
+                      ),
                     ),
-                    child: GestureDetector(
-                      onTap: () {
-                        if (petShow != "cats")
-                        getCats();  
-                        setState(() {
-                          show = true;
-                        });
-                      },
-                      child: Text(
-                        "CATS",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: mediaWidth(context, 0.07)
+                    Container(
+                      height: mediaHeight(context, 0.2),
+                      decoration: BoxDecoration(
+                        border: petShow == "cats" ? Border(
+                          bottom: BorderSide(
+                            width: mediaWidth(context, 0.01),
+                            color: Color.fromARGB(255, 221, 11, 11)
+                          )
+                        )
+                        :
+                        null
+                      ),
+                      margin: EdgeInsets.only(
+                        top: mediaHeight(context, 0.02)
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          if (petShow != "cats")
+                          getCats();  
+                          setState(() {
+                            show = true;
+                          });
+                        },
+                        child: Image.asset(
+                          'lib/assets/black-cat.png',
+                          
+                          width: mediaWidth(context, 0.2),
+                          height: mediaHeight(context, 0.2),
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: mediaHeight(context, 0.02)
-                    ),
-                    child: GestureDetector(
-                      onTap: () {
-                        if (petShow != "dogs") 
-                        getDogs();
-                        setState(() {
-                          show = true;
-                        });
-                      },
-                      child: Text(
-                        "DOGS",
-                        style: TextStyle(
-                          color: Colors.black,                      
-                          fontSize: mediaWidth(context, 0.07)
+                    Container(
+                      height: mediaHeight(context, 0.2),
+                      decoration: BoxDecoration(
+                        border: petShow == "dogs" ? Border(
+                          bottom: BorderSide(
+                            width: mediaWidth(context, 0.01),
+                            color: Color.fromARGB(255, 221, 11, 11)
+                          )
+                        )
+                        :
+                        null
+                      ),
+                      margin: EdgeInsets.only(
+                        top: mediaHeight(context, 0.02)
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          if (petShow != "dogs") 
+                          getDogs();
+                          setState(() {
+                            show = true;
+                          });
+                        },
+                        child: Image.asset(
+                          'lib/assets/dog.png',
+                          width: mediaWidth(context, 0.2),
+                          height: mediaHeight(context, 0.2),
                         ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-          show ?
           Container(
-            height: mediaHeight(context, 0.85),
+            decoration: BoxDecoration(
+              color: Colors.white
+            ),
+            height: defaultTargetPlatform == TargetPlatform.windows ? mediaHeight(context, 0.8) : mediaHeight(context, 0.85),
             child: LoadingOverlay(
               isLoading: loading,
               child: SingleChildScrollView(
@@ -157,14 +188,6 @@ class _MyHomePageState extends State<MyHomePage> {
           
                 ),
               ),
-            ),
-          )
-          :
-          Text(
-            "Select one of the options please",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: mediaWidth(context, 0.05)
             ),
           )
         ],
